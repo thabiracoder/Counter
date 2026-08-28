@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Digital Tasbeeh"
+description = "An offline-first digital Tasbeeh counter that remembers every tap locally, handles very large counts safely, and can be installed on Android as a Progressive Web App."
+version = "1.0.0"
+id = "artifacts/digital-tasbeeh"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24210
+
+[services.development]
+run = "pnpm --filter @workspace/digital-tasbeeh run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/digital-tasbeeh", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/digital-tasbeeh/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24210"
+BASE_PATH = "/"

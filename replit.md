@@ -1,6 +1,6 @@
-# [Project name]
+# Digital Tasbeeh
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+An offline-first digital Tasbeeh counter that remembers every tap locally and can be installed as a PWA.
 
 ## Run & Operate
 
@@ -22,23 +22,33 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/digital-tasbeeh/src/App.tsx` — the counter UI and interaction state
+- `artifacts/digital-tasbeeh/src/lib/counter-storage.ts` — IndexedDB persistence
+- `artifacts/digital-tasbeeh/public/manifest.webmanifest` — PWA install metadata
+- `artifacts/digital-tasbeeh/public/sw.js` — offline shell and asset caching
+- `artifacts/digital-tasbeeh/src/index.css` — responsive visual system
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The core counter is fully local; it does not use the API server, a database, authentication, or network requests.
+- Counts are stored as decimal strings in IndexedDB and represented as `bigint` in the UI so counting never hits JavaScript's safe-integer ceiling.
+- Every change is written through a serialized persistence queue to preserve rapid taps in order.
+- The service worker uses a runtime cache so the app shell and its bundled assets are available after the first successful load.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- A single, touch-first counter screen with a large circular tap target.
+- Persistent local count that survives refreshes, restarts, offline use, and PWA relaunches.
+- A single small reset control protected by confirmation.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Keep the interface extremely minimal: count, tap button, and one reset icon only.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The PWA is intentionally local-only; do not add server persistence or make counting depend on connectivity.
+- The web artifact workflow supplies `PORT` and `BASE_PATH`; use the managed workflow for preview.
 
 ## Pointers
 
