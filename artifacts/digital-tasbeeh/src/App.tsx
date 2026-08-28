@@ -102,7 +102,7 @@ function Home() {
   const formattedCount = count === null ? '' : formatCount(count);
 
   return (
-    <main className="app-shell grain" aria-label="Digital Tasbeeh">
+    <main className="app-shell grain" aria-label="Counter">
       <div className="tasbeeh-layout">
         <header className="tasbeeh-header">
           <button

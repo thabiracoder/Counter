@@ -1,0 +1,467 @@
+Modify the existing application and keep ALL existing working functionality intact.
+
+IMPORTANT:
+Do not rebuild unnecessary parts from scratch. Modify the current working application carefully.
+
+APP NAME:
+Change the application name everywhere from "Digital Tasbeeh", "Tasbeeh", or any similar name to simply:
+
+Counter
+
+Use "Counter" consistently for:
+- Application name
+- PWA manifest name
+- PWA short_name
+- Browser/page title
+- Android installed app name
+- Any app metadata
+- Any visible app naming
+
+Do not use the word "Tasbeeh" anywhere in the application's user-facing name.
+
+==================================================
+1. MAIN PURPOSE
+==================================================
+
+The app is a simple permanent tap Counter.
+
+Its main purpose is:
+
+COUNT EVERY TAP AND PERMANENTLY REMEMBER THE TOTAL COUNT.
+
+==================================================
+2. UNLIMITED COUNT
+==================================================
+
+There is NO maximum count.
+
+The counter must support very large numbers:
+
+0
+1
+99
+100
+1,000
+10,000
+100,000
+1,000,000
+10,000,000
+100,000,000+
+and beyond.
+
+Do not impose an artificial maximum.
+
+Every normal tap increases the count by exactly 1.
+
+==================================================
+3. PERMANENT STORAGE
+==================================================
+
+Use IndexedDB for reliable persistent local storage.
+
+Save the count immediately after every tap.
+
+The count must survive:
+
+- Closing the application
+- Reopening the application
+- Refreshing the page
+- Browser restart
+- Phone restart
+- Computer restart
+- Losing internet
+- Airplane mode
+- PWA relaunch
+
+Example:
+
+Count = 157
+
+Close app.
+
+Reopen app:
+
+157
+
+Tap:
+
+158
+
+The app must always continue from the previous saved count.
+
+If saved data exists, NEVER replace it with 0.
+
+Only a completely new installation/device with no previous stored count should start at 0.
+
+Make sure rapid repeated taps do not cause lost increments or incorrect saved values.
+
+==================================================
+4. RESET
+==================================================
+
+Keep ONE small reset icon/button in the top corner, preferably top-right.
+
+It must be small and unobtrusive.
+
+Do not use a large text reset button.
+
+When pressed, show a confirmation dialog:
+
+"Reset count to 0?"
+
+Buttons:
+Cancel
+Reset
+
+If the user selects Cancel:
+- Do nothing.
+- Keep the current count.
+
+If the user confirms:
+- Set count to 0.
+- Update the UI.
+- Save 0 to IndexedDB.
+
+There must be NO other reset mechanism.
+
+Do not add:
+- Clear button
+- Delete button
+- Undo reset
+- Keyboard reset shortcut
+- Long-press reset
+- Double-tap reset
+- Hidden reset gesture
+- Automatic reset
+
+The small corner reset icon is the ONLY reset method.
+
+==================================================
+5. 100% OFFLINE
+==================================================
+
+The application must work completely without internet.
+
+Counting and saving must require NO internet.
+
+It must work when:
+
+- Wi-Fi is OFF
+- Mobile data is OFF
+- Internet is disconnected
+- Airplane Mode is ON
+
+The core counter must not depend on:
+- API
+- Server
+- Cloud database
+- Login
+- Online authentication
+- Internet connection
+
+Counting and saving must happen locally on the device.
+
+==================================================
+6. PWA
+==================================================
+
+Keep the application as a proper Progressive Web App.
+
+Preserve and verify:
+
+- Web App Manifest
+- Service Worker
+- Offline caching
+- Proper mobile viewport
+- Standalone display mode
+- Android app icons
+- Installability
+
+All essential application resources must be locally available.
+
+Do not introduce external CDN resources that are required for the app to function offline.
+
+The installed Android PWA must be able to open and count without internet after it has been properly cached/installed.
+
+==================================================
+7. ANDROID
+==================================================
+
+The application must remain optimized for Android.
+
+It should be installable through Chrome using:
+
+"Install app" / "Add to Home Screen"
+
+The installed app name must be:
+
+Counter
+
+The Android home-screen icon/name should display:
+
+Counter
+
+The app should open in standalone mode rather than looking like a normal browser webpage.
+
+==================================================
+8. VERY LARGE TAP BUTTON
+==================================================
+
+The TAP button must remain very large on mobile.
+
+It should:
+
+- Be circular.
+- Occupy most of the available lower portion of the phone screen.
+- Be extremely comfortable for repeated thumb tapping.
+- Be easy to use with one hand.
+- Have enough margin so it is not clipped.
+- Never cause horizontal scrolling.
+- Keep the count clearly visible above it.
+
+Optimize for common Android widths:
+
+320px
+360px
+390px
+430px+
+
+On desktop/tablet, keep the button large but appropriately sized.
+
+The TAP button should feel like a dedicated physical counter.
+
+==================================================
+9. EXTREMELY MINIMAL UI
+==================================================
+
+Keep the application extremely minimal.
+
+Do NOT add unnecessary text.
+
+Do not display:
+- Digital Tasbeeh
+- Tasbeeh
+- Count
+- Tap to count
+- Saved on this device
+- Marketing text
+- Explanatory text
+- Subtitles
+- Descriptions
+- Unnecessary labels
+
+The main screen should essentially contain only:
+
+- The current number
+- The huge circular TAP button
+- The tiny reset icon in the corner
+
+The number should be the main visual focus.
+
+Example:
+
+                         ↻
+
+                         157
+
+
+                  [ HUGE TAP AREA ]
+
+Do not add unnecessary controls or features.
+
+==================================================
+10. TAP BEHAVIOR
+==================================================
+
+Every tap must:
+
+1. Increase the count by exactly 1.
+2. Update the number immediately.
+3. Save the new count immediately to IndexedDB.
+
+Rapid repeated tapping must work correctly.
+
+For example:
+
+If the user taps 100 times rapidly, the final count must increase by exactly 100.
+
+Avoid duplicate touch/click event handling that could cause one tap to count twice.
+
+Optional:
+- Subtle tap animation
+- Vibration on supported Android devices
+
+These must not interfere with counting.
+
+==================================================
+11. LARGE NUMBER DISPLAY
+==================================================
+
+The number must remain readable even when it becomes very large.
+
+Format large numbers cleanly if appropriate:
+
+1,000
+10,000
+100,000
+1,000,000
+
+But do not lose precision in the underlying stored value.
+
+Prevent overflow, clipping, and horizontal scrolling.
+
+==================================================
+12. UI DESIGN
+==================================================
+
+The design should be:
+
+- Clean
+- Minimal
+- Modern
+- Peaceful
+- Distraction-free
+- Mobile-first
+
+Prioritize:
+
+1. Current number
+2. Huge TAP button
+3. Small reset icon
+
+Avoid:
+- Excessive cards
+- Dashboards
+- Menus
+- Unnecessary settings
+- Ads
+- Login
+- Accounts
+- Social features
+- Cloud features
+- Unnecessary text
+
+Do not change the existing visual design unnecessarily; only improve what is required.
+
+==================================================
+13. DATA SAFETY
+==================================================
+
+The count is important data.
+
+After every tap:
+
+Count changes
+↓
+UI updates
+↓
+Count is persisted to IndexedDB
+
+Make sure storage operations are reliable and ordered correctly.
+
+Do not overwrite an existing saved count with 0 during startup.
+
+Do not lose increments during rapid tapping.
+
+==================================================
+14. OFFLINE TEST
+==================================================
+
+Verify that the installed PWA works without internet.
+
+Test:
+
+1. Open app online.
+2. Count to 10.
+3. Close and reopen → 10.
+4. Turn Wi-Fi OFF.
+5. Turn mobile data OFF.
+6. Open the installed Counter app from the Android home screen.
+7. It must open without internet.
+8. Tap 5 times → 15.
+9. Close the app while offline.
+10. Reopen while offline → 15.
+11. Tap again → 16.
+
+The offline app must continue working normally.
+
+==================================================
+15. RESET TEST
+==================================================
+
+Test:
+
+Current count = 16
+
+Press the tiny corner reset icon.
+
+Confirmation appears.
+
+Press Cancel:
+16
+
+Press reset and confirm:
+0
+
+Tap:
+1
+
+Close and reopen:
+1
+
+This confirms that reset also persists correctly.
+
+==================================================
+16. MOBILE TEST
+==================================================
+
+Test the layout at:
+
+320px
+360px
+390px
+430px+
+
+Verify:
+
+- Huge TAP button fits.
+- No clipping.
+- No horizontal scrolling.
+- Number remains visible.
+- Reset icon remains accessible.
+- Tap area is comfortable.
+- UI looks clean.
+
+==================================================
+17. FINAL REQUIREMENT
+==================================================
+
+Do not remove or break any existing working functionality.
+
+Keep:
+- IndexedDB persistence
+- Permanent local storage
+- Unlimited counting
+- Offline functionality
+- Service worker
+- PWA functionality
+- Android installation
+- Large mobile TAP button
+- Small reset button with confirmation
+
+Only change the application name to:
+
+Counter
+
+The final application should be extremely simple:
+
+        ↻
+
+        157
+
+
+    [ LARGE TAP BUTTON ]
+
+The app should simply count, remember the count permanently, work offline, and allow an intentional reset through the small corner reset icon.
+
+After making the changes, run the application, test it, fix any errors, and verify that the PWA still works offline and the count remains persistent.

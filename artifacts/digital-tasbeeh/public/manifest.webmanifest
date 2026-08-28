@@ -1,7 +1,7 @@
 {
-  "name": "Digital Tasbeeh",
-  "short_name": "Tasbeeh",
-  "description": "A quiet, offline digital Tasbeeh counter.",
+  "name": "Counter",
+  "short_name": "Counter",
+  "description": "A quiet, offline counter that remembers every tap.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

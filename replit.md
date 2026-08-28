@@ -1,6 +1,6 @@
-# Digital Tasbeeh
+# Counter
 
-An offline-first digital Tasbeeh counter that remembers every tap locally and can be installed as a PWA.
+An offline-first counter that remembers every tap locally and can be installed as a PWA.
 
 ## Run & Operate
 
@@ -30,7 +30,7 @@ An offline-first digital Tasbeeh counter that remembers every tap locally and ca
 
 ## Architecture decisions
 
-- The core counter is fully local; it does not use the API server, a database, authentication, or network requests.
+- The core counter is fully local; it does not use the API server, a cloud database, authentication, or network requests.
 - Counts are stored as decimal strings in IndexedDB and represented as `bigint` in the UI so counting never hits JavaScript's safe-integer ceiling.
 - Every change is written through a serialized persistence queue to preserve rapid taps in order.
 - The service worker uses a runtime cache so the app shell and its bundled assets are available after the first successful load.
