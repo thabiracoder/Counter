@@ -41,8 +41,8 @@ jobs:
         working-directory: artifacts/digital-tasbeeh
         env:
           PORT: 5173
+          BASE_PATH: /Counter/
         run: pnpm run build
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
