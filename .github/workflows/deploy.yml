@@ -39,6 +39,8 @@ jobs:
 
       - name: Build Tasbeeh App
         working-directory: artifacts/digital-tasbeeh
+        env:
+          PORT: 5173
         run: pnpm run build
 
       - name: Setup Pages
